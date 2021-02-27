@@ -4,17 +4,16 @@ import java.sql.SQLException;
 import java.util.List;
 
 import javax.ejb.Stateless;
-import javax.inject.Inject;
 import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
-import ec.ups.edu.RemedialAtancuriJonathan.modelo.Autor;
 import ec.ups.edu.RemedialAtancuriJonathan.modelo.Categoria;
 
 @Stateless
 public class CategoriaDAO {
 
-	@Inject
+	@PersistenceContext
 	private EntityManager em;
 
 	public boolean insert(Categoria categoria) throws SQLException {
@@ -26,23 +25,17 @@ public class CategoriaDAO {
 		em.merge(categoria);
 		return true;
 	}
-	public Categoria read(int id){
-		Categoria cliente=em.find(Categoria.class, id);
-		return cliente;
+	public Categoria buscar(String tipo){
+		return em.find(Categoria.class, tipo);
 	}
-	public boolean delete(int id) throws SQLException {
-		Autor cliente= this.read(id);
-		em.remove(cliente);
-		return true;
-
-	}
-	public List<Autor> getAutor(){
-		String jpql="SELECT c FROM Categoria c WHERE tipo=?1";
+	
+	public List<Categoria> getCategoria(){
+		String jpql="SELECT FROM Categoria c WHERE tipo=?1";
 		
-		Query q= em.createQuery(jpql, Autor.class);
+		Query q= em.createQuery(jpql, Categoria.class);
 		q.setParameter(1,1);
 
-		return (List<Autor>)q.getResultList();
+		return (List<Categoria>)q.getResultList();
 		
 	}
 

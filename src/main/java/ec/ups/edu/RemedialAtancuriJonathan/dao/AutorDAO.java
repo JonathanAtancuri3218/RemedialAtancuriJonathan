@@ -4,8 +4,8 @@ import java.sql.SQLException;
 import java.util.List;
 
 import javax.ejb.Stateless;
-import javax.inject.Inject;
 import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
 import ec.ups.edu.RemedialAtancuriJonathan.modelo.Autor;
@@ -14,7 +14,7 @@ import ec.ups.edu.RemedialAtancuriJonathan.modelo.Autor;
 @Stateless
 public class AutorDAO {
 	
-	@Inject
+	@PersistenceContext
 	private EntityManager em;
 
 	public boolean insert(Autor autor) throws SQLException {
@@ -36,7 +36,7 @@ public class AutorDAO {
 		return true;
 
 	}
-	public List<Autor> getClientes(){
+	public List<Autor> getAutor(){
 		String jpql="SELECT c FROM Autor c WHERE tipo=?1";
 		
 		Query q= em.createQuery(jpql, Autor.class);

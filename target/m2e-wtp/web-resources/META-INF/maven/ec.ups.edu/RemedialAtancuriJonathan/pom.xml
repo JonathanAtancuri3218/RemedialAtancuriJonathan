@@ -37,7 +37,7 @@
         <version.wildfly.maven.plugin>2.0.2.Final</version.wildfly.maven.plugin>
 
         <!-- Define the version of the JBoss BOMs we want to import to specify tested stacks. -->
-        <version.jboss.bom>22.0.0.Final</version.jboss.bom>
+        <version.jboss.bom>21.0.0.Final</version.jboss.bom>
 
         <!-- other plugin versions -->
         <version.compiler.plugin>3.8.1</version.compiler.plugin>
@@ -66,6 +66,19 @@
             <url>https://repository.jboss.org/nexus/content/groups/public/</url>
             <layout>default</layout>
         </repository>
+        <repository>
+            <releases>
+                <enabled>true</enabled>
+                <updatePolicy>never</updatePolicy>
+            </releases>
+            <snapshots>
+                <enabled>true</enabled>
+                <updatePolicy>never</updatePolicy>
+            </snapshots>
+            <id>jboss-enterprise-maven-repository</id>
+            <name>JBoss Enterprise Maven Repository</name>
+            <url>https://maven.repository.redhat.com/ga/</url>
+        </repository>
     </repositories>
     <pluginRepositories>
         <pluginRepository>
@@ -78,6 +91,17 @@
             <id>jboss-public-repository-group</id>
             <name>JBoss Public Repository Group</name>
             <url>https://repository.jboss.org/nexus/content/groups/public/</url>
+        </pluginRepository>
+        <pluginRepository>
+            <releases>
+                <enabled>true</enabled>
+            </releases>
+            <snapshots>
+                <enabled>true</enabled>
+            </snapshots>
+            <id>jboss-enterprise-maven-repository</id>
+            <name>JBoss Enterprise Maven Repository</name>
+            <url>https://maven.repository.redhat.com/ga/</url>
         </pluginRepository>
     </pluginRepositories>
 
@@ -107,6 +131,25 @@
             <artifactId>jakarta.enterprise.cdi-api</artifactId>
             <scope>provided</scope>
         </dependency>
+        
+        <!-- https://mvnrepository.com/artifact/javax.inject/javax.inject -->
+<dependency>
+    <groupId>javax.inject</groupId>
+    <artifactId>javax.inject</artifactId>
+    <version>1</version>
+</dependency>
+        
+  
+        
+        <!-- https://mvnrepository.com/artifact/javax.xml/webservices-api -->
+<dependency>
+    <groupId>javax.xml</groupId>
+    <artifactId>webservices-api</artifactId>
+    <version>2.1-b16</version>
+</dependency>
+        
+        
+        
 
         <!-- Bean Validation Implementation 
            Provides portable constraints such as @Email 
@@ -116,6 +159,15 @@
             <artifactId>hibernate-validator</artifactId>
             <scope>provided</scope>
         </dependency>
+		        
+		        <!-- https://mvnrepository.com/artifact/javax.validation/validation-api -->
+		<dependency>
+		    <groupId>javax.validation</groupId>
+		    <artifactId>validation-api</artifactId>
+		    <version>2.0.1.Final</version>
+		</dependency>
+        
+        
 
         <!-- Import the JPA API, we use provided scope as the API is included in WildFly / JBoss EAP -->
         <dependency>
@@ -291,6 +343,7 @@
                             </systemPropertyVariables>
                         </configuration>
                     </plugin>
+                    
                 </plugins>
             </build>
         </profile>

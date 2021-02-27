@@ -14,6 +14,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
+
 @Entity
 public class Libro  implements Serializable{
 	
@@ -26,10 +27,15 @@ public class Libro  implements Serializable{
 	private int codigo;
 	private String nombre;
 	private String Editorial;
+	private String stock;
+	private double precio;
 	
 	@OneToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "id_categoria")
-	Categoria categoria; 
+	private Categoria categoria; 
+	
+	
+	
 	
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 	@Column(name="id_libro")
@@ -65,6 +71,22 @@ public class Libro  implements Serializable{
 		Editorial = editorial;
 	}
 
+	public String getStock() {
+		return stock;
+	}
+
+	public void setStock(String stock) {
+		this.stock = stock;
+	}
+
+	public double getPrecio() {
+		return precio;
+	}
+
+	public void setPrecio(double precio) {
+		this.precio = precio;
+	}
+
 	public Categoria getCategoria() {
 		return categoria;
 	}
@@ -83,8 +105,11 @@ public class Libro  implements Serializable{
 
 	@Override
 	public String toString() {
-		return "Libro [codigo=" + codigo + ", nombre=" + nombre + ", Editorial=" + Editorial + ", categoria="
-				+ categoria + ", listaAutores=" + listaAutores + "]";
+		return "Libro [codigo=" + codigo + ", nombre=" + nombre + ", Editorial=" + Editorial + ", stock=" + stock
+				+ ", precio=" + precio + ", categoria=" + categoria + ", listaAutores=" + listaAutores + "]";
 	}
+
+	
+	
 
 }
