@@ -24,7 +24,7 @@ public class LibroON {
 	
 	
 	public List<Libro> obtenerLibros() throws Exception {
-        return libroDAO.getLibro();
+        return libroDAO.getLibros();
     }
 
 

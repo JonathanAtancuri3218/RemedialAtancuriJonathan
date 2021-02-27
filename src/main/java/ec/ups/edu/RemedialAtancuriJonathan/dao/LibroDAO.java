@@ -1,6 +1,5 @@
 package ec.ups.edu.RemedialAtancuriJonathan.dao;
 
-import java.sql.SQLException;
 import java.util.List;
 
 import javax.ejb.Stateless;
@@ -8,7 +7,6 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
-import ec.ups.edu.RemedialAtancuriJonathan.modelo.Categoria;
 import ec.ups.edu.RemedialAtancuriJonathan.modelo.Libro;
 
 @Stateless
@@ -34,16 +32,16 @@ public class LibroDAO {
      * @return
      * @throws Exception
      */
-    public void actualizarStockLibro(int idProducto, int stock) throws Exception {
-        em.createQuery("UPDATE Libro p SET p.stock = :stock WHERE p.codigo = :idProducto")
-                .setParameter("idProducto", idProducto)
+    public void actualizarStockLibro(int idLibro, int stock) throws Exception {
+        em.createQuery("UPDATE Libro p SET p.stock = :stock WHERE p.codigo = :idLibro")
+                .setParameter("idLibro", idLibro)
                 .setParameter("stock", stock)
                 .executeUpdate();
     }
 
 	
-	public List<Libro> getLibro(){
-		String jpql="SELECT FROM Libro c WHERE codigo=?1";
+    public List<Libro> getLibros(){
+		String jpql="SELECT c FROM Libro c WHERE codigo=?1";
 		
 		Query q= em.createQuery(jpql, Libro.class);
 		q.setParameter(1,1);
